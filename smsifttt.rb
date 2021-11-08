@@ -58,7 +58,7 @@ class Channel::Driver::Sms::Smsifttt
   private
 
   def get_uri(options, attr)
-    str = options[:gateway] + '/'+options::eventname+'/with/key/'+options::token
+    str = options[:gateway] + '/trigger/'+options::eventname+'/with/key/'+options::token
     uri = URI(str)
     return uri
   end
