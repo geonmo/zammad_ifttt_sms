@@ -12,7 +12,6 @@ class Channel::Driver::Sms::Smsifttt
     Rails.logger.info "Backend sending Coolsms to #{attr[:recipient]}"
     begin
       if Setting.get('developer_mode') != true
-        #header = get_header(options, attr)
         uri = get_uri(options, attr)
         messages = {  
                       :value1   => attr[:recipient],
@@ -23,7 +22,6 @@ class Channel::Driver::Sms::Smsifttt
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
         req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
-        #req.add_field('Authorization', header)
         
         req.body = messages.to_json
         res = http.request(req)
@@ -58,15 +56,6 @@ class Channel::Driver::Sms::Smsifttt
   end
 
   private
-
-  def get_header(options, attr)
-    api_key = options[:token]
-    api_secret = options[:secret]
-    date = Time.now.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
-    salt = SecureRandom.hex
-    signature = OpenSSL::HMAC.hexdigest('SHA256', api_secret, date + salt)
-    return 'HMAC-SHA256 apiKey=' + api_key + ', date=' + date + ', salt=' + salt + ', signature=' + signature
-  end
 
   def get_uri(options, attr)
     str = options[:gateway] + '/'+options::eventname+'/with/key/'+options::token
