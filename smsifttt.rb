@@ -50,7 +50,7 @@ class Channel::Driver::Sms::Smsifttt
       notification: [
         { name: 'options::gateway', display: 'Gateway', tag: 'input', type: 'text', limit: 200, null: false, placeholder: 'https://maker.ifttt.com',default:'https://maker.ifttt.com' },
         { name: 'options::eventname', display: 'Event Name', tag: 'input', type: 'text', limit: 200, null: false, placeholder: 'ifttt_webhook_eventname' },
-        { name: 'options::token', display: 'Sender', tag: 'input', type: 'text', limit: 200, null: false, placeholder: 'XXXXXXXXXX' },
+        { name: 'options::token', display: 'Token', tag: 'input', type: 'text', limit: 200, null: false, placeholder: 'XXXXXXXXXX' },
       ]
     }
   end
