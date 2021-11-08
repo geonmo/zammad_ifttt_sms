@@ -25,9 +25,9 @@ class Channel::Driver::Sms::Smsifttt
         
         req.body = messages.to_json
         res = http.request(req)
-        response = JSON.parse(res.body)
-        statusCode = response["status"]
-        if !statusCode == 'COMPLETE' && !statusCode = 'SENDING'
+        #response = JSON.parse(res.body)
+        #statusCode = response["status"]
+        if !res.body[0..15] == 'Congratulations!'
           message = "Received non-OK response from gateway URL '#{uri}'"
           Rails.logger.error "#{message}:"
           raise message
